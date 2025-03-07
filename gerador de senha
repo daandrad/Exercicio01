@@ -1,0 +1,86 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOcv/GjflqimK/BNK5VOi50",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/daandrad/Exercicio01/blob/main/gerador%20de%20senha\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random\n",
+        "import string\n",
+        "import pyperclip\n",
+        "\n",
+        "def gerar_senha(comprimento=12, maiusculas=True, numeros=True, especiais=True):\n",
+        "    caracteres = string.ascii_lowercase\n",
+        "    if maiusculas:\n",
+        "        caracteres += string.ascii_uppercase\n",
+        "    if numeros:\n",
+        "        caracteres += string.digits\n",
+        "    if especiais:\n",
+        "        caracteres += string.punctuation\n",
+        "\n",
+        "    senha = ''.join(random.choice(caracteres) for _ in range(comprimento))\n",
+        "    return senha\n",
+        "\n",
+        "def main():\n",
+        "    print(\"=== Gerador de Senhas Seguras ===\")\n",
+        "    comprimento = int(input(\"Digite o comprimento da senha: \"))\n",
+        "    maiusculas = input(\"Incluir letras maiúsculas? (s/n): \").lower() == 's'\n",
+        "    numeros = input(\"Incluir números? (s/n): \").lower() == 's'\n",
+        "    especiais = input(\"Incluir caracteres especiais? (s/n): \").lower() == 's'\n",
+        "\n",
+        "    senha = gerar_senha(comprimento, maiusculas, numeros, especiais)\n",
+        "    print(f\"Senha gerada: {senha}\")\n",
+        "\n",
+        "    pyperclip.copy(senha)\n",
+        "    print(\"A senha foi copiada para a área de transferência!\")\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "KPag8AXUQcsZ",
+        "outputId": "6d046056-1443-43b6-bc9b-666f6f04903d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "metadata": {
+            "tags": null
+          },
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "=== Gerador de Senhas Seguras ===\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
